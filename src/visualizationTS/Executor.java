@@ -1,6 +1,7 @@
 package visualizationTS;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -17,15 +18,18 @@ public class Executor {
         try {
             tweets=a.getDBData();
             for (Tweet t: tweets) {
+                System.out.println(t.getEmotion());
                 System.out.println(t.getTimeString());
             }
 
-            //Arrays.sort(tweets); //sort array ascendantly.
-            Arrays.sort(tweets, Collections.reverseOrder()); //sort array descendantly.
 
-            for (Tweet t: tweets) {
-                System.out.println(t.getTimeString());
-            }
+
+//            //Arrays.sort(tweets); //sort array ascendantly.
+//            Arrays.sort(tweets, Collections.reverseOrder()); //sort array descendantly.
+//
+//            for (Tweet t: tweets) {
+//                System.out.println(t.getTimeString());
+//            }
 
         } catch (SQLException e) {
 
