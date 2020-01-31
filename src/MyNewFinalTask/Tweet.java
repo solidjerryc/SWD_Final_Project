@@ -8,12 +8,8 @@ import java.util.Date;
 /**
  * The class of tweet. It contains information extract from database.
  */
-public class Tweet implements Comparable<Tweet>{
+public class Tweet extends SpatialTimeSeriesDataset{
     private long id;
-    private double lat;
-    private double lon;
-    private String timeString="";
-    private Date time;
     private long userID;
     private String emotion;
     private String tripTime;
@@ -47,7 +43,7 @@ public class Tweet implements Comparable<Tweet>{
         this.lat=lat;
         this.lon=lon;
         this.timeString=time;
-        this.time=strToDate(time);
+        this.time=strToDate(time, "yyyy/MM/dd hh:mm:ss");
         this.userID=userID;
         this.emotion=emotion;
         this.tripTime=tripTime;
@@ -59,26 +55,10 @@ public class Tweet implements Comparable<Tweet>{
      * @param m
      * @return
      */
-    public int compareTo(Tweet m) {
+    public int compareTo(SpatialTimeSeriesDataset m) {
         return this.time.compareTo(m.getTime());
     }
 
-    /**
-     * Transfer String to Date
-     * @param s
-     * @return
-     */
-    private Date strToDate(String s){
-        DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
-        Date date;
-        try {
-            date = sdf.parse(s);
-        }catch (ParseException e) {
-            //e.printStackTrace();
-            date=null;
-        }
-        return date;
-    }
 
     public double getLat() {
         return lat;
