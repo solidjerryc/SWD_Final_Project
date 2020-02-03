@@ -1,20 +1,14 @@
 package MyNewFinalTask;
 
-import java.io.IOException;
 import java.io.Serializable;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
 
 import org.geotools.data.simple.SimpleFeatureCollection;
-import org.geotools.data.simple.SimpleFeatureIterator;
 import org.geotools.data.simple.SimpleFeatureSource;
 import org.geotools.data.wfs.WFSDataStore;
 import org.geotools.data.wfs.WFSDataStoreFactory;
-import org.geotools.data.store.ContentFeatureCollection;
-
-import processing.core.PImage;
 
 public class WFSConnector {
     //definition of private/public global parameters, figure out

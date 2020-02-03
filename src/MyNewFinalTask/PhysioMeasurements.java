@@ -11,6 +11,13 @@ public class PhysioMeasurements extends SpatialTimeSeriesDataset {
         this.heartRate=0;
     }
 
+    /**
+     *
+     * @param lat
+     * @param lon
+     * @param time
+     * @param heartRate
+     */
     public PhysioMeasurements(double lat, double lon, String time, int heartRate){
         this.lat=lat;
         this.lon=lon;

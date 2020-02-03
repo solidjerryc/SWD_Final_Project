@@ -1,7 +1,5 @@
 package MyNewFinalTask;
 
-import java.awt.Image;
-import java.io.IOException;
 import java.sql.SQLException;
 
 import processing.core.PApplet;
@@ -38,7 +36,7 @@ public class Executor extends PApplet {
 				wmsHeight, wmsWidth);
 		try {
 			//get Data from the WMS, expected output image in PNG format
-			img = x.getWMSData();//need PImage
+			img = new PImage(x.getWMSData());//need PImage
 
 			System.out.println("Successfully connected to the WMS");
 
