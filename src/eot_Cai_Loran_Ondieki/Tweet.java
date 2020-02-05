@@ -1,17 +1,50 @@
+//#######################################################################################################################################
+//Overview
+//#######################################################################################################################################
+// Class name: 	Tweet
+// Purpose: 	The class of tweet extending the Class SpatialTImeSeriesDataset.
+// Author:		Boqin Cai
+// Created:		January 11, 2020
+// Version:		1.0
+//#######################################################################################################################################
+
 package eot_Cai_Loran_Ondieki;
 
 import java.util.Date;
 
 /**
- * The class of tweet. It contains information extract from database.
+ * The class of tweet extending the Class SpatialTImeSeriesDataset.
+ * It contains information extract from database including longitude,
+ * latitude and time.
+ *
+ * The structure of table in database
+ *             Table "twitter"
+ *    Column   |         Type         | Modifiers
+ * ------------+----------------------+-----------
+ *  Tweet_ID   | bigint               | not null
+ *  Tweet_lati | double precision     |
+ *  Tweet_long | double precision     |
+ *  Tweet_time | character(30)        |
+ *  Tweet_user | bigint               |
+ *  jEmotion   | character varying    |
+ *  tripTime   | character(30)        |
+ *  txt        | character varying    |
+ *  geom       | geometry(Point,4326) |
+ *
+ * Indexes:
+ *     "tweetid_pkey1" PRIMARY KEY, btree ("Tweet_ID")
+ *
  */
 public class Tweet extends SpatialTimeSeriesDataset {
-    private long id;
-    private long userID;
-    private String emotion;
-    private String tripTime;
-    private String txt;
+    private long id; // Tweeter ID in database
+    private long userID; // user ID in database
+    private String emotion; // jEmotion in database
+    private String tripTime; // tripTime in database
+    private String txt; // txt in database
 
+    /**
+     * Default empty constructor
+     */
     public Tweet(){
         this.id=0;
         this.lat=0.0;
@@ -25,15 +58,15 @@ public class Tweet extends SpatialTimeSeriesDataset {
     }
 
     /**
-     *
+     * Constructor with parameters
      * @param id Tweet id
-     * @param lat
-     * @param lon
-     * @param time
-     * @param userID
-     * @param emotion
-     * @param tripTime
-     * @param txt
+     * @param lat latitude
+     * @param lon longitude
+     * @param time String of time: It will transfer to Date type
+     * @param userID user id
+     * @param emotion String of emotion
+     * @param tripTime trip time
+     * @param txt the text of the tweet
      */
     public Tweet(long id, double lat, double lon, String time, long userID, String emotion, String tripTime, String txt){
         this.id=id;
@@ -47,16 +80,12 @@ public class Tweet extends SpatialTimeSeriesDataset {
         this.txt=txt;
     }
 
+
+    //######################################################
     /**
-     * Make it comparable by time. Then we can sort Tweet array by time using Arrays.sort() method.
-     * @param m
-     * @return
+     * Getters of all private variables.
+     * @return The value of variables
      */
-    public int compareTo(SpatialTimeSeriesDataset m) {
-        return this.time.compareTo(m.getTime());
-    }
-
-
     public double getLat() {
         return lat;
     }
@@ -77,6 +106,14 @@ public class Tweet extends SpatialTimeSeriesDataset {
         return emotion;
     }
 
+    public String getTripTime() {
+        return tripTime;
+    }
+
+    public String getTxt() {
+        return txt;
+    }
+
     /**
      * Return time in Date
      * @return
@@ -91,13 +128,5 @@ public class Tweet extends SpatialTimeSeriesDataset {
      */
     public String getTimeString() {
         return timeString;
-    }
-
-    public String getTripTime() {
-        return tripTime;
-    }
-
-    public String getTxt() {
-        return txt;
     }
 }

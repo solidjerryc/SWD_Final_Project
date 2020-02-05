@@ -1,29 +1,42 @@
-/*
-package visualizationTS;
+//#######################################################################################################################################
+//Overview
+//#######################################################################################################################################
+// Class name: 	DBConnector
+// Purpose: 	Connect to an PostgreSQL database, get data and convert them to Tweet array
+// Author:		Boqin Cai
+// Created:		January 11, 2020
+// Version:		1.0
+//#######################################################################################################################################
 
-public class DBConnector {
-	
-	String url = "jdbc:postgresql://47.91.72.131/swd";
-	String username = "agi";
-	String pw = "salzach2020$";
-	
-}
-*/
 
 package eot_Cai_Loran_Ondieki;
 
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * A class that connect
+ */
 public class DBConnector {
-    String url;
-    String username;
-    String psw;
-    String sql;
+    private String url; //The connection url of database
+    private String username; // user name of database
+    private String psw; // password of the user
+    private String sql; //Query String
 
+    /**
+     * Default empty constructor
+     */
     public DBConnector() {
+        new DBConnector("", "", "", "");
     }
 
+    /**
+     * The constructor with parameters.
+     * @param url Input database url
+     * @param username Input username
+     * @param psw Input password
+     * @param sql Input SQL statement
+     */
     public DBConnector(String url, String username, String psw, String sql){
         this.url=url;
         this.username=username;
@@ -31,7 +44,12 @@ public class DBConnector {
         this.sql=sql;
     }
 
-
+    /**
+     * Get data from Database. After connecting to the database, this method returns a
+     * list of Tweets in database.
+     * @return a list of Tweet objects
+     * @throws SQLException
+     */
     public Tweet[] getDBData() throws SQLException {
         Connection conn = DriverManager.getConnection(url, username, psw);
         ArrayList<Tweet> tweets=new ArrayList<>();
@@ -61,7 +79,10 @@ public class DBConnector {
         return outTweet;
     }
 
-
+    /**
+     * For testing this class
+     * @param args
+     */
     public static void main(String[] args) {
         String url="jdbc:postgresql://47.91.72.131/swd";
         String username="agi";
